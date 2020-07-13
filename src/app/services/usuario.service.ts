@@ -11,7 +11,16 @@ export class UsuarioService {
   private url = 'https://reqres.in/api';
 
   getUsers() {
-    return this._http.get(`${this.url}/users?per_page=6`).pipe(
+    return this._http.get(`${this.url}/users?per_page=6&delay=3`).pipe(
+      map((respuesta: any) => {
+        return respuesta.data;
+        // return respuesta['data'];
+      })
+    );
+  }
+
+  getUserById(id: string) {
+    return this._http.get(`${this.url}/users/${id}`).pipe(
       map((respuesta: any) => {
         return respuesta.data;
         // return respuesta['data'];
